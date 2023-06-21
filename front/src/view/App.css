@@ -1,0 +1,139 @@
+html {
+  font-family: 'Noto Sans JP',
+    sans-serif;
+  font-weight: 700;
+  color: #503c14;
+  touch-action: manipulation;
+}
+
+body {
+  background-color: #ffffff;
+  width: 100vw;
+  margin: 0;
+}
+
+#header {
+  text-align: center;
+  font-size: 4vh;
+}
+
+#main {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  font-family: 'Noto Sans JP',
+    sans-serif;
+  font-weight: 750;
+  color: #503c14;
+  font-size: 150%;
+  border-radius: 3px;
+  border: none;
+  background-color: #dfdfdf;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #cfcfcf;
+}
+
+button:active {
+  background-color: #b8b8b8;
+}
+
+
+#footer {
+  box-shadow: 0 10px 10px 5px #000000;
+  position: fixed;
+  height:32vh;
+  width: 100%;
+  bottom: 0;
+  display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+
+}
+
+a {
+  color: #503c14;
+  text-decoration: none;
+}
+
+#counter {
+  color: #6AAA64;
+}
+.buttons{
+    text-align: center;
+}
+
+.cash {
+  color: #503c14;
+  text-decoration: none;
+  position: absolute;
+  font-size: 2vh;
+  left: calc(50vw - 14vh);
+  bottom: 1px;
+}
+
+#start {
+  margin: 0 10px 0 0;
+}
+
+.tweetButtonImage {
+  margin: 0;
+  width: 4vh;
+  position: relative;
+  bottom: -1vh;
+}
+
+
+.hints{
+	max-height:52vh;
+	overflow-y: auto;
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+
+.hintTitle {
+  font-size:2vh;
+}
+
+.hint {
+  color: #ffffff;
+	box-shadow:1px 4px 4px #71889b;
+	position: relative;
+	min-height:12vh;
+	width:50vh;
+	max-width:95vw;
+	margin:7px;
+	background-color: #79c9a1;
+	text-align: center;
+}
+
+.answer{
+	display:flex;
+  flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+  color: #503c14;
+  text-decoration: none;
+  position: relative;
+}
+
+.answer input{
+  color: #503c14;
+  font-size: 3vh;
+  margin-bottom:0.5vh;
+  /* width: 20vw; */
+}
+.ans{
+  text-align: center;
+  font-size: 10vh;
+}
