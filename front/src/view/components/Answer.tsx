@@ -15,12 +15,11 @@ function Answer() {
   }
   async function onClick() {
     console.log(ans)
-    setResult(await checkAns(1, ans))
+    setResult(await checkAns(ans))
   }
 
   return (
     <div className="answer">
-      result:{result}
       <div className="ans">
         {ans == '' || ans == ' ' || ans == '  ' ? '__' : ans}
       </div>

@@ -3,7 +3,7 @@ import constant from '../../util/const'
 import Button from './Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { increment } from '../../stores/counterSlice'
-import { getHint, selectHintCount } from '../../stores/hintGetterSlice'
+import { getTodayHint, selectHintCount } from '../../stores/hintGetterSlice'
 import { AppDispatch } from '../../stores/store'
 
 function RouletteButton() {
@@ -12,7 +12,7 @@ function RouletteButton() {
 
   function handleClick() {
     if (constant.HINTS_INDEX.length > hint_count) {
-      dispatch(getHint({ element: 1, hint: constant.HINTS_INDEX[hint_count] }))
+      dispatch(getTodayHint({ hint: constant.HINTS_INDEX[hint_count] }))
       dispatch(increment())
     }
     return

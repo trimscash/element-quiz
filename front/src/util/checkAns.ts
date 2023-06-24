@@ -1,9 +1,10 @@
 import constant from './const'
 import axios from 'axios'
+import { AnswerQuery } from './apiQueryType'
 
-async function checkAns(element: number, ans: string) {
-  const response: any = await axios
-    .get(constant.API_URL + '/' + element + '/answer/' + ans)
+async function checkTodayAns(ans: string) {
+  const response = await axios
+    .get(constant.TODAY_ANSWER_URL, { params: { ans: ans } as AnswerQuery })
     .catch(() => {
       console.log('checkAns Err')
       return { data: { result: 'error' } }
@@ -19,4 +20,4 @@ async function checkAns(element: number, ans: string) {
   return 0
 }
 
-export default checkAns
+export default checkTodayAns
