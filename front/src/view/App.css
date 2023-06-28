@@ -138,17 +138,9 @@ a {
   font-size: 10vh;
 }
 
-.balloon{
-  z-index: 40000;
-	margin:0.2vh;
-	position:relative;
-	color:#fff;
-	padding:0 1.5vw;
-	width:auto;
-	height:4vh;
-	display: grid;
-	justify-content:center;
-	align-items: center;
-	background-color:#000;
-	border-radius: 5px;
+.balloons{
+  position: absolute;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
 }

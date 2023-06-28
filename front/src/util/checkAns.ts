@@ -2,7 +2,7 @@ import constant from './const'
 import axios from 'axios'
 import { AnswerQuery } from './apiQueryType'
 
-async function checkTodayAns(ans: string) {
+async function checkTodayAns(ans: string): Promise<boolean> {
   const response = await axios
     .get(constant.TODAY_ANSWER_URL, { params: { ans: ans } as AnswerQuery })
     .catch(() => {
@@ -13,11 +13,11 @@ async function checkTodayAns(ans: string) {
   if (response.data.result == 'correct') {
     console.log(response.data.result)
 
-    return 1
+    return true
   }
   console.log(response.data.result)
 
-  return 0
+  return false
 }
 
 export default checkTodayAns

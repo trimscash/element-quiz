@@ -1,21 +1,28 @@
 import React, { useState } from 'react'
-import csvHeaders from '../../util/csvHeaders'
-import constant from '../../util/const'
-import * as reactRedux from 'react-redux'
-import { selectHints, selectHintCount } from '../../stores/hintGetterSlice'
-import Button from './Button'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAnsIncorrectNum, setResult } from '../../stores/ansResulterSlice'
+import { selectErrors, pushError } from '../../stores/errorCollector'
+import { AppDispatch } from '../../stores/store'
 import checkAns from '../../util/checkAns'
+import errorTypes from '../../util/errorTypes'
+import Button from './Button'
 
 function Answer() {
   const [ans, setAns] = useState('')
-  const [result, setResult] = useState(0)
-  const hints: string[] = reactRedux.useSelector(selectHints)
+  const incorrectNum: number = useSelector(selectAnsIncorrectNum)
+  const errors = useSelector(selectErrors)
+  const dispatch = useDispatch<AppDispatch>()
+
   function handleChange(input: string) {
     setAns(input)
   }
   async function onClick() {
     console.log(ans)
-    setResult(await checkAns(ans))
+    const res = await checkAns(ans)
+    if (!res) {
+      dispatch(pushError({ error: errorTypes.Incorrect }))
+    }
+    dispatch(setResult({ result: res }))
   }
 
   return (
@@ -28,7 +35,7 @@ function Answer() {
         maxLength={2}
         onChange={(e) => handleChange(e.target.value)}
       />
-      <Button onClick={() => onClick()} value="ans" />
+      <Button onClick={() => onClick()} value="Answer" />
     </div>
   )
 }

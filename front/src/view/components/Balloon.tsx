@@ -3,10 +3,19 @@ import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 
 const BalloonCSS = styled.div`
-  position: absolute;
-  top: 100px;
-  display: flex;
-  flex-direction: column;
+  z-index: 40000;
+  margin: 0.2vh;
+  position: relative;
+  color: #fff;
+  padding: 0 1.5vw;
+  width: 10em;
+  height: 4vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  border-radius: 5px;
+  opacity: 0.9;
   &.balloon-enter {
     opacity: 0;
   }
@@ -19,7 +28,7 @@ const BalloonCSS = styled.div`
     opacity: 1;
   }
   &.balloon-exit-active {
-    transition-duration: 300ms;
+    transition-duration: 500ms;
     transition-property: opacity;
     opacity: 0;
   }
@@ -33,9 +42,9 @@ const Balloon = (props: BalloonPropType) => {
   const [inProp, setInProp] = useState(true)
   setTimeout(() => {
     setInProp(false)
-  }, 800)
+  }, 1000)
   return (
-    <CSSTransition classNames="balloon" in={inProp} timeout={500} unmountOnExit>
+    <CSSTransition classNames="balloon" in={inProp} timeout={200} unmountOnExit>
       <BalloonCSS key="transition-group-content">{props.value}</BalloonCSS>
     </CSSTransition>
   )
