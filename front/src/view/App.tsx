@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
-  selectAnsResult,
+  selectHasCorrected,
   selectAnsIncorrectNum,
-  setResult,
+  selectIsCorrectModalClose,
+  setIsCorrectModalClose,
 } from '../stores/ansResulterSlice'
 import { pushError, selectErrors } from '../stores/errorCollector'
 import { selectHints, selectHintCount } from '../stores/hintGetterSlice'
 import errorTypes from '../util/errorTypes'
 import './App.css'
 import Balloon from './components/Balloon'
+import CorrectModal from './components/CorrectModal'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Hint from './components/Hint'
@@ -18,6 +20,10 @@ function App() {
   const hint_count = useSelector(selectHintCount)
   const incorrectNum = useSelector(selectAnsIncorrectNum)
   const errors = useSelector(selectErrors)
+  const hasCorrected = useSelector(selectHasCorrected)
+
+  const isCorrectModalClose = useSelector(selectIsCorrectModalClose)
+
   const hint_jsx_list = []
   const balloon_list = []
 
@@ -41,6 +47,7 @@ function App() {
   return (
     <div>
       <Header />
+      <CorrectModal isOpen={hasCorrected && !isCorrectModalClose} />
       <div id="main">
         <h2 id="counter">hints: {hint_count}</h2>
         <div className="balloons">{balloon_list}</div>

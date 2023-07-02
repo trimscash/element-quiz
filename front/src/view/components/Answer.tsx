@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAnsIncorrectNum, setResult } from '../../stores/ansResulterSlice'
+import {
+  selectAnsIncorrectNum,
+  setResult,
+  setIsCorrectModalClose,
+} from '../../stores/ansResulterSlice'
 import { selectErrors, pushError } from '../../stores/errorCollector'
 import { AppDispatch } from '../../stores/store'
 import checkAns from '../../util/checkAns'
@@ -21,6 +25,8 @@ function Answer() {
     const res = await checkAns(ans)
     if (!res) {
       dispatch(pushError({ error: errorTypes.Incorrect }))
+    } else {
+      dispatch(setIsCorrectModalClose({ isCorrectModalClose: false }))
     }
     dispatch(setResult({ result: res }))
   }
