@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { selectHints, selectHintCount } from '../../stores/hintSetterSlice'
 import HintButton from '../components/HintButton'
-import { selectHints, selectHintCount } from '../../stores/hintGetterSlice'
 import Answer from './Answer'
 
 function updateTweetURL(result: string, count: number) {

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ErrorTypesType } from '../util/errorTypes'
 import type { RootState } from './store'
-import errorTypes, { ErrorTypesType } from '../util/errorTypes'
 
 // Define a type for the slice state
 interface ErrorCollectorState {
@@ -12,7 +12,7 @@ const initialState: ErrorCollectorState = {
   errors: [] as number[],
 }
 
-interface ErrorCollectorArg {
+export interface ErrorCollectorArg {
   error: ErrorTypesType
 }
 

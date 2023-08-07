@@ -7,7 +7,7 @@ import {
   setIsCorrectModalClose,
 } from '../stores/ansResulterSlice'
 import { pushError, selectErrors } from '../stores/errorCollector'
-import { selectHints, selectHintCount } from '../stores/hintGetterSlice'
+import { selectHints, selectHintCount } from '../stores/hintSetterSlice'
 import errorTypes from '../util/errorTypes'
 import './App.css'
 import Balloon from './components/Balloon'
@@ -49,7 +49,13 @@ function App() {
       <Header />
       <CorrectModal isOpen={hasCorrected && !isCorrectModalClose} />
       <div id="main">
-        <h2 id="counter">hints: {hint_count}</h2>
+        <div id="status-area">
+          <h2 id="hint-counter">hints: {hint_count}</h2>
+          <h2 id="incorrect-counter">incorrct: {incorrectNum}</h2>
+          <h2 id="has-corrected-state" hidden={!hasCorrected}>
+            Corrected!!
+          </h2>
+        </div>
         <div className="balloons">{balloon_list}</div>
         <h1 className="hints">
           {hint_jsx_list}

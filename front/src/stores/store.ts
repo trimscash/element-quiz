@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from './counterSlice'
-import hintGetterReducer from './hintGetterSlice'
 import ansResulterReducer from './ansResulterSlice'
+import counterReducer from './counterSlice'
 import errorCollectorReducer from './errorCollector'
+import hintSetterReducer from './hintSetterSlice'
 
 const store = configureStore({
   reducer: {
-    hintGetter: hintGetterReducer,
+    hintSetter: hintSetterReducer,
     counter: counterReducer,
     ansResulter: ansResulterReducer,
     errorCollector: errorCollectorReducer,

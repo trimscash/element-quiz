@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { hasExpectedRequestMetadata } from '@reduxjs/toolkit/dist/matchers'
 import {
   selectAnsIncorrectNum,
   setResult,
   setIsCorrectModalClose,
+  selectHasCorrected,
 } from '../../stores/ansResulterSlice'
 import { selectErrors, pushError } from '../../stores/errorCollector'
 import { AppDispatch } from '../../stores/store'
@@ -14,6 +16,7 @@ import Button from './Button'
 function Answer() {
   const [ans, setAns] = useState('')
   const incorrectNum: number = useSelector(selectAnsIncorrectNum)
+  const hasCorrected: boolean = useSelector(selectHasCorrected)
   const errors = useSelector(selectErrors)
   const dispatch = useDispatch<AppDispatch>()
 
@@ -40,6 +43,7 @@ function Answer() {
         type="text"
         maxLength={2}
         onChange={(e) => handleChange(e.target.value)}
+        readOnly={!hasCorrected}
       />
       <Button onClick={() => onClick()} value="Answer" />
     </div>

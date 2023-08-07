@@ -63,9 +63,7 @@ a {
   text-decoration: none;
 }
 
-#counter {
-  color: #6AAA64;
-}
+
 .buttons{
     text-align: center;
 }
@@ -143,6 +141,25 @@ a {
   top: 100px;
   display: flex;
   flex-direction: column;
+}
+
+#status-area{
+	display:flex;
+  flex-direction: row;
+}
+#status-area>*{
+  margin-left:10px;
+  margin-right:10px;
+}
+
+#hint-counter {
+  color: #6AAA64;
+}
+#incorrect-counter {
+  color: #c73e73;
+}
+#has-corrected-state {
+  color: #552fdd;
 }
 
 .ReactModal__Overlay {

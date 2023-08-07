@@ -1,8 +1,8 @@
 import React from 'react'
-import csvHeaders from '../../util/csvHeaders'
-import constant from '../../util/const'
 import * as reactRedux from 'react-redux'
-import { selectHints } from '../../stores/hintGetterSlice'
+import { selectHints } from '../../stores/hintSetterSlice'
+import constant from '../../util/const'
+import csvHeaders from '../../util/csvHeaders'
 
 type HintPropType = {
   hint_index: number
