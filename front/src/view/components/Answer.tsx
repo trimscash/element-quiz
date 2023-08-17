@@ -43,7 +43,7 @@ function Answer() {
         type="text"
         maxLength={2}
         onChange={(e) => handleChange(e.target.value)}
-        readOnly={!hasCorrected}
+        readOnly={hasCorrected}
       />
       <Button onClick={() => onClick()} value="Answer" />
     </div>

@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  front:
+    build: front
+    volumes:
+      - ./front/src:/front/src
+    ports:
+      - "3000:3000"
+    working_dir: /front
+    command: npm start
+
+  api:
+    build: api
+    volumes:
+      - ./api/src:/api/src
+    ports:
+      - "4000:4000"
+    working_dir: /api
+    command: npm start
