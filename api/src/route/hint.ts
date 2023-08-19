@@ -20,7 +20,7 @@ const FAILED_RESP: HintType = {
 router.get('/today/', (req, res) => {
   const atom_num = today_atom
   const hint_index = Number(req.query.hint_index)
-  console.log(hint_index)
+  // console.log(hint_index)
   let resp: HintType
 
   const hint = get_hint(atom_num, hint_index)
