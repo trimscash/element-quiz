@@ -9,7 +9,7 @@ import {
 } from '../../stores/ansResulterSlice'
 import { selectErrors, pushError } from '../../stores/errorCollector'
 import { AppDispatch } from '../../stores/store'
-import checkAns from '../../util/checkAns'
+import { checkDailyAns } from '../../util/checkAns'
 import errorTypes from '../../util/errorTypes'
 import Button from './Button'
 
@@ -25,7 +25,7 @@ function Answer() {
   }
   async function onClick() {
     console.log(ans)
-    const res = await checkAns(ans)
+    const res = await checkDailyAns(ans)
     if (!res) {
       dispatch(pushError({ error: errorTypes.Incorrect }))
     } else {

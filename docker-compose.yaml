@@ -1,7 +1,21 @@
 version: "3.9"
 services:
+  db:
+    image: postgres:14
+    container_name: postgresql
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - db-store:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=mydb
+      - POSTGRES_USER=postgres
+
   front:
     build: front
+    restart: always
     volumes:
       - ./front/src:/front/src
     ports:
@@ -10,10 +24,16 @@ services:
     command: npm start
 
   api:
+    depends_on:
+      - db
     build: api
+    restart: always
     volumes:
       - ./api/src:/api/src
     ports:
       - "4000:4000"
     working_dir: /api
     command: npm start
+
+volumes:
+  db-store:

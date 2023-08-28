@@ -1,7 +1,7 @@
 import express from 'express'
 import get_hint from '../util/get_hint'
 import CONSTANT from '../util/constant'
-import today_atom from '../util/today_atom'
+import { get_todays_daily_atom } from '../util/get_daily_atom'
 
 const router = express.Router()
 
@@ -17,8 +17,8 @@ const FAILED_RESP: HintType = {
   state: '',
 } as const
 
-router.get('/today/', (req, res) => {
-  const atom_num = today_atom
+router.get('/daily/', async (req, res) => {
+  const atom_num = await get_todays_daily_atom()
   const hint_index = Number(req.query.hint_index)
   // console.log(hint_index)
   let resp: HintType

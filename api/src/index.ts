@@ -1,8 +1,9 @@
 import express from 'express'
 import session from 'express-session'
-import today_atom from './util/today_atom'
+import { get_todays_daily_atom } from './util/get_daily_atom'
 import answer from './route/answer'
 import hint from './route/hint'
+import './cron/daily/daily_atom_create_cron'
 
 const app = express()
 const port = 4000
@@ -49,8 +50,9 @@ app.use(function (req, res, next) {
 // )
 
 // get today's atom
-app.get('/', (req, res) => {
-  res.send('{"todays_atom": "' + today_atom + '"}')
+app.get('/', async (req, res) => {
+  console.log('aaa')
+  res.send('{"todays_atom": "' + (await get_todays_daily_atom()) + '"}')
 })
 
 app.use('/answer', answer)

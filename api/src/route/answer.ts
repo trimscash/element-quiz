@@ -1,6 +1,6 @@
 import express from 'express'
 import get_ans from '../util/get_ans'
-import today_atom from '../util/today_atom'
+import { get_todays_daily_atom } from '../util/get_daily_atom'
 import CONSTANT from '../util/constant'
 const router = express.Router()
 
@@ -16,8 +16,8 @@ const FAILED_RESP: ResultType = {
   state: CONSTANT.FAILED,
 } as const
 
-router.get('/today/', (req, res) => {
-  const atom_num = today_atom
+router.get('/daily/', async (req, res) => {
+  const atom_num = await get_todays_daily_atom()
   const player_ans = req.query.ans || ''
   let resp: ResultType
 

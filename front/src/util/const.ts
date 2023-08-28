@@ -1,11 +1,14 @@
 import csvIndex from './csvIndex'
 
-const API_URL = 'http://localhost:4000'
+// import 'dotenv/config'
+
+const API_URL = process.env.REACT_APP_API_URL
+// const API_URL ='http://localhost:4000'
 
 const constant = {
   API_URL: API_URL,
-  TODAY_HINT_URL: API_URL + '/hint/today',
-  TODAY_ANSWER_URL: API_URL + '/answer/today',
+  TODAY_HINT_URL: API_URL + '/hint/daily',
+  TODAY_ANSWER_URL: API_URL + '/answer/daily',
   SERVIVAL_HINT_URL: API_URL + '/hint/servival',
   SERVIVAL_ANSWER_URL: API_URL + '/answer/servival',
   HINTS_INDEX: [
