@@ -1,6 +1,6 @@
 import express from 'express'
 import get_ans from '../util/get_ans'
-import { get_todays_daily_atom } from '../util/get_daily_atom'
+import { get_todays_daily_element } from '../util/get_daily_element'
 import CONSTANT from '../util/constant'
 const router = express.Router()
 
@@ -17,11 +17,11 @@ const FAILED_RESP: ResultType = {
 } as const
 
 router.get('/daily/', async (req, res) => {
-  const atom_num = await get_todays_daily_atom()
+  const atomic_num = await get_todays_daily_element()
   const player_ans = req.query.ans || ''
   let resp: ResultType
 
-  const ans = get_ans(atom_num)
+  const ans = get_ans(atomic_num)
 
   if (ans != CONSTANT.OUT_OF_INDEX) {
     if (ans == player_ans) {
@@ -48,11 +48,11 @@ router.get('/daily/', async (req, res) => {
 })
 
 router.get('/servival/', (req, res) => {
-  const atom_num = 0 //Number(req.params.atom_num)
+  const atomic_num = 0 //Number(req.params.atomic_num)
   const player_ans = req.query.ans || ''
   let resp: ResultType
 
-  const ans = get_ans(atom_num)
+  const ans = get_ans(atomic_num)
 
   if (ans != CONSTANT.OUT_OF_INDEX) {
     if (ans == player_ans) {

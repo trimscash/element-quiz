@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useCookies } from 'react-cookie'
 import Modal from 'react-modal'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
@@ -11,6 +12,12 @@ import {
 import { selectErrors } from '../../stores/errorCollector'
 import { selectHintCount } from '../../stores/hintSetterSlice'
 import { AppDispatch } from '../../stores/store'
+import {
+  GameInfoType,
+  HintType,
+  initialGameInfo,
+} from '../../util/cookieGameInfoType'
+import TweetButton from './TweetButton'
 
 const modalStyles = {
   content: {
@@ -25,10 +32,6 @@ const modalStyles = {
   },
 }
 
-const contentStyles: CSS.Properties = {
-  // textAlign: 'center',
-}
-
 type CorrectModalPropType = {
   isOpen: boolean
 }
@@ -37,6 +40,8 @@ function CorrectModal(props: CorrectModalPropType) {
   const hint_count = useSelector(selectHintCount)
   const incorrectNum = useSelector(selectAnsIncorrectNum)
   const dispatch = useDispatch<AppDispatch>()
+  const [cookies, setCookie, removeCookie] = useCookies(['gameInfo'])
+  const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
 
   return (
     <Modal
@@ -47,13 +52,16 @@ function CorrectModal(props: CorrectModalPropType) {
       }
       style={modalStyles}
     >
-      <div style={contentStyles}>
+      <div>
         <h1>Correct!</h1>
-        <div className="ans">{'a'}</div>
-        {/* <div id="status-area" style={contentStyles}> */}
-        <h2 id="hint-counter">hints: {hint_count}</h2>
-        <h2 id="incorrect-counter">incorrct: {incorrectNum}</h2>
-        {/* </div> */}
+        <div>
+          <div className="ans">{gameInfoObj.answer}</div>
+        </div>
+        <div id="status-area">
+          <h2 id="hint-counter">hints: {hint_count}</h2>
+          <h2 id="incorrect-counter">incorrct: {incorrectNum}</h2>
+        </div>
+        <TweetButton />
       </div>
     </Modal>
   )

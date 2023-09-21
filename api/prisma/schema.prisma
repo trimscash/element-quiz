@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model daily_atom {
+model daily_element {
   id         Int      @id @default(autoincrement())
   atomic_num Int
   created_at DateTime @default(now())

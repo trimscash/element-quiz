@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import constant from '../util/const'
 import type { RootState } from './store'
 
 // Define a type for the slice state
@@ -27,7 +28,11 @@ export const hintSetterState = createSlice({
     setHint: (state, action: PayloadAction<SetHintArg>) => {
       state.hints.push(action.payload.hint)
       state.hint_index.push(action.payload.hint_index)
-      state.hint_count++
+    },
+    incrementHintCount: (state) => {
+      if (constant.HINTS_INDEX.length > state.hint_count) {
+        state.hint_count++
+      }
     },
   },
   // extraReducers: (builder) => {
@@ -38,7 +43,7 @@ export const hintSetterState = createSlice({
   // },
 })
 
-export const { setHint } = hintSetterState.actions
+export const { setHint, incrementHintCount } = hintSetterState.actions
 
 export const selectHints = (state: RootState) => state.hintSetter.hints
 export const selectHintIndex = (state: RootState) => state.hintSetter.hint_index

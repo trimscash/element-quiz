@@ -68,6 +68,10 @@ a {
     text-align: center;
 }
 
+#tweetButton{
+  margin:5px
+}
+
 .cash {
   color: #503c14;
   text-decoration: none;

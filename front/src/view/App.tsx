@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useCookies } from 'react-cookie'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   selectHasCorrected,
   selectAnsIncorrectNum,
   selectIsCorrectModalClose,
+  setResult,
   setIsCorrectModalClose,
+  incrementIncorrectNum,
 } from '../stores/ansResulterSlice'
 import { pushError, selectErrors } from '../stores/errorCollector'
+import { incrementHintCount, setHint } from '../stores/hintSetterSlice'
 import { selectHints, selectHintCount } from '../stores/hintSetterSlice'
+import { AppDispatch } from '../stores/store'
+import {
+  GameInfoType,
+  HintType,
+  initialGameInfo,
+} from '../util/cookieGameInfoType'
 import errorTypes from '../util/errorTypes'
 import './App.css'
 import Balloon from './components/Balloon'
@@ -17,6 +27,8 @@ import Header from './components/Header'
 import Hint from './components/Hint'
 
 function App() {
+  const dispatch = useDispatch<AppDispatch>()
+
   const hint_count = useSelector(selectHintCount)
   const incorrectNum = useSelector(selectAnsIncorrectNum)
   const errors = useSelector(selectErrors)
@@ -26,6 +38,27 @@ function App() {
 
   const hint_jsx_list = []
   const balloon_list = []
+
+  const [cookies, setCookie, removeCookie] = useCookies(['gameInfo'])
+
+  useEffect(() => {
+    console.log(initialGameInfo)
+    console.log(cookies.gameInfo)
+    const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
+    dispatch(setResult({ result: gameInfoObj.hasCorrected }))
+    for (let i = 0; i < gameInfoObj.hintNum; i++) {
+      dispatch(
+        setHint({
+          hint: gameInfoObj.hints[i].hint,
+          hint_index: gameInfoObj.hints[i].hintIndex,
+        })
+      )
+      dispatch(incrementHintCount())
+    }
+    for (let i = 0; i < gameInfoObj.incorrectedNum; i++) {
+      dispatch(incrementIncorrectNum())
+    }
+  }, [])
 
   for (const e of errors) {
     let errorContext = ''
@@ -51,7 +84,7 @@ function App() {
       <div id="main">
         <div id="status-area">
           <h2 id="hint-counter">hints: {hint_count}</h2>
-          <h2 id="incorrect-counter">incorrct: {incorrectNum}</h2>
+          <h2 id="incorrect-counter">incorrect: {incorrectNum}</h2>
           <h2 id="has-corrected-state" hidden={!hasCorrected}>
             Corrected!!
           </h2>
