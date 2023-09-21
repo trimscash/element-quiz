@@ -17,11 +17,11 @@ const FAILED_RESP: ResultType = {
 } as const
 
 router.get('/daily/', async (req, res) => {
-  const atomic_num = await get_todays_daily_element()
+  const element_num = await get_todays_daily_element()
   const player_ans = req.query.ans || ''
   let resp: ResultType
 
-  const ans = get_ans(atomic_num)
+  const ans = get_ans(element_num)
 
   if (ans != CONSTANT.OUT_OF_INDEX) {
     if (ans == player_ans) {
@@ -48,11 +48,11 @@ router.get('/daily/', async (req, res) => {
 })
 
 router.get('/servival/', (req, res) => {
-  const atomic_num = 0 //Number(req.params.atomic_num)
+  const element_num = 0 //Number(req.params.element_num)
   const player_ans = req.query.ans || ''
   let resp: ResultType
 
-  const ans = get_ans(atomic_num)
+  const ans = get_ans(element_num)
 
   if (ans != CONSTANT.OUT_OF_INDEX) {
     if (ans == player_ans) {
