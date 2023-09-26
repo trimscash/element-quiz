@@ -18,16 +18,20 @@ services:
       - POSTGRES_USER=postgres
 
   front:
-    build: front
+    build: 
+      context: ./front
+      dockerfile: DockerfileProduction
     restart: always
     volumes:
       - ./front/src:/front/src
     expose:
       - "3000:3000"
     working_dir: /front
-    command: npm start
+    command: serve -s build
 
   api:
+    environment:
+      - NODE_ENV=production
     depends_on:
       - db
     build: api
