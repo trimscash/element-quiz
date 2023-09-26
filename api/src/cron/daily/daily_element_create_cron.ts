@@ -26,7 +26,7 @@ cron.schedule(
     await update_todays_element()
     console.log('------------------------------')
   },
-  { scheduled: true, timezone: 'Asia/Tokyo' }
+  { scheduled: true, timezone: 'UTC' }
 )
 
 // cron.schedule('*/2 * * * * *', () => {
