@@ -1,7 +1,7 @@
 import express from 'express'
 import get_hint from '../util/get_hint'
 import CONSTANT from '../util/constant'
-import today_atom from '../util/today_atom'
+import { get_todays_daily_element } from '../util/get_daily_element'
 
 const router = express.Router()
 
@@ -17,13 +17,13 @@ const FAILED_RESP: HintType = {
   state: '',
 } as const
 
-router.get('/today/', (req, res) => {
-  const atom_num = today_atom
+router.get('/daily/', async (req, res) => {
+  const atomic_num = await get_todays_daily_element()
   const hint_index = Number(req.query.hint_index)
   // console.log(hint_index)
   let resp: HintType
 
-  const hint = get_hint(atom_num, hint_index)
+  const hint = get_hint(atomic_num, hint_index)
   if (hint != CONSTANT.OUT_OF_INDEX) {
     resp = {
       hint: hint,
@@ -39,11 +39,11 @@ router.get('/today/', (req, res) => {
 })
 
 router.get('/servival/', (req, res) => {
-  const atom_num = 0 //Number(req.params.atom_num)
+  const atomic_num = 0 //Number(req.params.atomic_num)
   const hint_index = Number(req.query.hint_index)
   let resp: HintType
 
-  const hint = get_hint(atom_num, hint_index)
+  const hint = get_hint(atomic_num, hint_index)
   if (hint != CONSTANT.OUT_OF_INDEX) {
     resp = {
       hint: hint,

@@ -28,11 +28,11 @@ export const ansResulterSlice = createSlice({
   reducers: {
     setResult: (state, action: PayloadAction<SetResultAnsArg>) => {
       if (!state.hasCorrected) {
-        if (!action.payload.result) {
-          state.incorrectNum++
-        }
         state.hasCorrected = action.payload.result
       }
+    },
+    incrementIncorrectNum: (state) => {
+      state.incorrectNum++
     },
     setIsCorrectModalClose: (
       state,
@@ -43,7 +43,8 @@ export const ansResulterSlice = createSlice({
   },
 })
 
-export const { setResult, setIsCorrectModalClose } = ansResulterSlice.actions
+export const { setResult, incrementIncorrectNum, setIsCorrectModalClose } =
+  ansResulterSlice.actions
 
 export const selectAnsIncorrectNum = (state: RootState) =>
   state.ansResulter.incorrectNum

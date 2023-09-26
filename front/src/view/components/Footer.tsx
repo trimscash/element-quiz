@@ -1,31 +1,18 @@
 import React from 'react'
+import { useCookies } from 'react-cookie'
 import { useSelector } from 'react-redux'
 import { selectHints, selectHintCount } from '../../stores/hintSetterSlice'
+import { initialGameInfo, GameInfoType } from '../../util/cookieGameInfoType'
+import { generateResultTweetURL } from '../../util/generateTweetButton'
 import HintButton from '../components/HintButton'
 import Answer from './Answer'
-
-function updateTweetURL(result: string, count: number) {
-  const text1 = encodeURI(result + '\n')
-  const text2 = encodeURI(
-    '\n' + count + ' 回 あけおめルーレットをまわしました\n'
-  )
-  const hashtag = encodeURI('あけおめルーレット')
-  const url = encodeURI('trimscash.github.io/akeome')
-  const encodedURL =
-    'https://twitter.com/intent/tweet?&text=' +
-    text1 +
-    '%20%23' +
-    hashtag +
-    '%20' +
-    text2 +
-    '&url=' +
-    url
-  return encodedURL
-}
+import TweetButton from './TweetButton'
 
 function Footer() {
   const hint_count = useSelector(selectHintCount)
   const hints: string[] = useSelector(selectHints)
+  const [cookies, setCookie, removeCookie] = useCookies(['gameInfo'])
+  const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
 
   return (
     <div id="footer">
@@ -33,9 +20,7 @@ function Footer() {
         <Answer />
         <div className="buttons">
           <HintButton />
-          <a id="tweetButton" href={updateTweetURL(hints[0], hint_count)}>
-            <img className="tweetButtonImage" src="./circleTweet.png" />
-          </a>
+          <TweetButton />
         </div>
       </div>
 

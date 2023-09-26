@@ -1,15 +1,23 @@
 import React, { useState } from 'react'
+import { useCookies } from 'react-cookie'
 import { useDispatch, useSelector } from 'react-redux'
 import { hasExpectedRequestMetadata } from '@reduxjs/toolkit/dist/matchers'
 import {
   selectAnsIncorrectNum,
   setResult,
   setIsCorrectModalClose,
+  incrementIncorrectNum,
   selectHasCorrected,
 } from '../../stores/ansResulterSlice'
 import { selectErrors, pushError } from '../../stores/errorCollector'
 import { AppDispatch } from '../../stores/store'
-import checkAns from '../../util/checkAns'
+import { checkDailyAns } from '../../util/checkAns'
+import {
+  GameInfoType,
+  HintType,
+  initialGameInfo,
+} from '../../util/cookieGameInfoType'
+import { endOfToday } from '../../util/endOfToday'
 import errorTypes from '../../util/errorTypes'
 import Button from './Button'
 
@@ -20,17 +28,26 @@ function Answer() {
   const errors = useSelector(selectErrors)
   const dispatch = useDispatch<AppDispatch>()
 
+  const [cookies, setCookie, removeCookie] = useCookies(['gameInfo'])
+
   function handleChange(input: string) {
     setAns(input)
   }
   async function onClick() {
     console.log(ans)
-    const res = await checkAns(ans)
+    const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
+
+    const res = await checkDailyAns(ans)
     if (!res) {
       dispatch(pushError({ error: errorTypes.Incorrect }))
+      dispatch(incrementIncorrectNum())
+      gameInfoObj.incorrectedNum++
     } else {
       dispatch(setIsCorrectModalClose({ isCorrectModalClose: false }))
+      gameInfoObj.hasCorrected = true
+      gameInfoObj.answer = ans
     }
+    setCookie('gameInfo', JSON.stringify(gameInfoObj), { expires: endOfToday })
     dispatch(setResult({ result: res }))
   }
 
