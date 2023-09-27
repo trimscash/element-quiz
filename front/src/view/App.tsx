@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
+import ReactGA from 'react-ga4'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   selectHasCorrected,
@@ -42,6 +43,9 @@ function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['gameInfo'])
 
   useEffect(() => {
+    ReactGA.initialize(process.env.REACT_APP_GTAG as string)
+    ReactGA.send('pageview')
+
     // console.log(cookies.gameInfo)
     const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
     dispatch(setResult({ result: gameInfoObj.hasCorrected }))

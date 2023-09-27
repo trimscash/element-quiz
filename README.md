@@ -12,6 +12,7 @@ React, Express, prisma
 ```front/.env
 REACT_APP_API_URL="http://api:4000"
 REACT_APP_PUBLIC_URL="http://localhost"
+REACT_APP_GTAG="G-XXXXX"
 TZ=UTC
 ```
 
