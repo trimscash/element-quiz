@@ -59,6 +59,8 @@ function Answer() {
         expires: endOfToday,
       })
       dispatch(setResult({ result: res }))
+    } else {
+      dispatch(setIsCorrectModalClose({ isCorrectModalClose: false }))
     }
   }
 
