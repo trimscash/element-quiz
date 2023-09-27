@@ -18,7 +18,7 @@ function Footer() {
     <div id="footer">
       <div className="controll">
         <Answer />
-        <div className="buttons">
+        <div id="hintButtons">
           <HintButton />
           <TweetButton />
         </div>
