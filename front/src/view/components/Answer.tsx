@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 import { useDispatch, useSelector } from 'react-redux'
 import { hasExpectedRequestMetadata } from '@reduxjs/toolkit/dist/matchers'
@@ -30,25 +30,36 @@ function Answer() {
 
   const [cookies, setCookie, removeCookie] = useCookies(['gameInfo'])
 
+  useEffect(() => {
+    if (hasCorrected) {
+      const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
+      setAns(gameInfoObj.answer)
+    }
+  })
+
   function handleChange(input: string) {
     setAns(input)
   }
   async function onClick() {
-    console.log(ans)
-    const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
+    if (!hasCorrected) {
+      console.log(ans)
+      const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
 
-    const res = await checkDailyAns(ans)
-    if (!res) {
-      dispatch(pushError({ error: errorTypes.Incorrect }))
-      dispatch(incrementIncorrectNum())
-      gameInfoObj.incorrectedNum++
-    } else {
-      dispatch(setIsCorrectModalClose({ isCorrectModalClose: false }))
-      gameInfoObj.hasCorrected = true
-      gameInfoObj.answer = ans
+      const res = await checkDailyAns(ans)
+      if (!res) {
+        dispatch(pushError({ error: errorTypes.Incorrect }))
+        dispatch(incrementIncorrectNum())
+        gameInfoObj.incorrectedNum++
+      } else {
+        dispatch(setIsCorrectModalClose({ isCorrectModalClose: false }))
+        gameInfoObj.hasCorrected = true
+        gameInfoObj.answer = ans
+      }
+      setCookie('gameInfo', JSON.stringify(gameInfoObj), {
+        expires: endOfToday,
+      })
+      dispatch(setResult({ result: res }))
     }
-    setCookie('gameInfo', JSON.stringify(gameInfoObj), { expires: endOfToday })
-    dispatch(setResult({ result: res }))
   }
 
   return (
