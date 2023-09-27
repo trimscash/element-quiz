@@ -3,7 +3,7 @@ Every day Element Quiz!
 
 React, Express, prisma
 
-<img src="https://github.com/trimscash/element-quiz/assets/42578480/de1d5ac9-f063-4643-980f-6a125e1370e5" width="50%" />
+<img src="https://github.com/trimscash/element-quiz/assets/42578480/de1d5ac9-f063-4643-980f-6a125e1370e5" width="60%" />
 
 
 # deploy
