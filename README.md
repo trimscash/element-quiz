@@ -1,7 +1,10 @@
 # element-quiz
 Every day Element Quiz!
-![image](https://github.com/trimscash/element-quiz/assets/42578480/6a539a24-88cc-4ea9-9cf4-f31580a54731)
-![image](https://github.com/trimscash/element-quiz/assets/42578480/30614063-b6dd-4fa0-80b6-11060200d5ba)
+
+React, Express, prisma
+
+<img src="https://github.com/trimscash/element-quiz/assets/42578480/de1d5ac9-f063-4643-980f-6a125e1370e5" width="50%" />
+
 
 # deploy
 
@@ -40,4 +43,8 @@ POSTGRES_PASSWORD="passW0rd"
 docker compose -f production.yaml up -d
 ```
 
-# issue
+# todo
+- Use styled-components
+- SSL
+- Implement servaival mode
+- Design for mobile 
