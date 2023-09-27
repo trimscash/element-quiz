@@ -25,9 +25,9 @@ function Footer() {
       </div>
 
       <div className="cash">
-        <a href="https://github.com/trimscash/element-quiz/">ソースコード/</a>
+        <a href="https://github.com/trimscash/element-quiz/">Source code/</a>
         <a href="https://twitter.com/trims_cash">@trims_cash</a>
-        <span style={{ fontSize: 1 + 'em' }}>←誤り等</span>
+        <span style={{ fontSize: 1 + 'em' }}></span>
       </div>
     </div>
   )
