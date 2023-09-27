@@ -42,7 +42,7 @@ function Answer() {
   }
   async function onClick() {
     if (!hasCorrected) {
-      console.log(ans)
+      // console.log(ans)
       const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
 
       const res = await checkDailyAns(ans)

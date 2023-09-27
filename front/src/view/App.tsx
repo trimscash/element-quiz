@@ -42,8 +42,7 @@ function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['gameInfo'])
 
   useEffect(() => {
-    console.log(initialGameInfo)
-    console.log(cookies.gameInfo)
+    // console.log(cookies.gameInfo)
     const gameInfoObj: GameInfoType = cookies.gameInfo ?? initialGameInfo
     dispatch(setResult({ result: gameInfoObj.hasCorrected }))
     for (let i = 0; i < gameInfoObj.hintNum; i++) {
