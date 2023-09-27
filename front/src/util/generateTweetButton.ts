@@ -27,7 +27,7 @@ ${hintText}
 `
   console.log(context)
   const tweetLimit = 270
-  const URL = encodeURIComponent(process.env.REACT_APP_API_URL ?? '')
+  const URL = encodeURIComponent(process.env.REACT_APP_PUBLIC_URL ?? '')
   const encoded = encodeURIComponent(
     limitStringNum(context, tweetLimit - URL.length - 3)
   )
