@@ -8,7 +8,7 @@ html {
 
 body {
   background-color: #ffffff;
-  width: 100vw;
+  width: 100svw;
   margin: 0;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -16,7 +16,7 @@ body {
 
 #header {
   text-align: center;
-  font-size: clamp(1vh, 5vw, 4vh);
+  font-size: clamp(1svh, 5svw, 4svh);
 }
 
 #main {
@@ -52,7 +52,7 @@ button:active {
 #footer {
   box-shadow: 0 10px 10px 5px #000000;
   position: fixed;
-  height: 32vh;
+  height: 32svh;
   width: 100%;
   bottom: 0;
   display: flex;
@@ -84,7 +84,7 @@ a {
   color: #503c14;
   text-decoration: none;
   position: absolute;
-  font-size: clamp(0.5em, 5vw, 1em);
+  font-size: clamp(0.5em, 5svw, 1em);
   bottom: 1px;
 }
 
@@ -94,14 +94,14 @@ a {
 
 .tweetButtonImage {
   margin: 0;
-  width: 4vh;
+  width: 4svh;
   position: relative;
-  bottom: -1vh;
+  bottom: -1svh;
 }
 
 
 .hints {
-  max-height: 52vh;
+  max-height: 52svh;
   overflow-y: auto;
   display: flex;
   flex-direction: row;
@@ -118,9 +118,9 @@ a {
   color: #ffffff;
   box-shadow: 1px 4px 4px #71889b;
   position: relative;
-  min-height: 12vh;
-  width: 50vh;
-  max-width: 95vw;
+  min-height: 12svh;
+  width: 50svh;
+  max-width: 95svw;
   margin: 7px;
   background-color: #79c9a1;
   text-align: center;
@@ -138,14 +138,14 @@ a {
 
 .answer input {
   color: #503c14;
-  font-size: 3vh;
-  margin-bottom: 0.5vh;
+  font-size: 3svh;
+  margin-bottom: 0.5svh;
   /* width: 20vw; */
 }
 
 .ans {
   text-align: center;
-  font-size: 10vh;
+  font-size: 10svh;
 }
 
 .balloons {
@@ -163,7 +163,7 @@ a {
 #status-area>* {
   margin-left: 10px;
   margin-right: 10px;
-  font-size: clamp(16px, 5vw, 1.5em);
+  font-size: clamp(16px, 5svw, 1.5em);
 }
 
 #hint-counter {
