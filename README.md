@@ -9,20 +9,22 @@ React, Express, prisma
 # deploy
 
 ### env parameters example
-```front/.env
+```
+#front/.env
 REACT_APP_API_URL="http://api:4000"
 REACT_APP_PUBLIC_URL="http://localhost"
 REACT_APP_GTAG="G-XXXXX"
 TZ=UTC
 ```
 
-```api/.env
+```
+#api/.env
 POSTGRES_PASSWORD="passW0rd"
 TZ=UTC
 # TZ=Asia/Tokyo
 
-
 FRONT_URL="http://localhost"
+
 # This was inserted by `prisma init`:
 # Environment variables declared in this file are automatically made available to Prisma.
 # See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
@@ -34,7 +36,8 @@ FRONT_URL="http://localhost"
 DATABASE_URL="postgresql://postgres:passW0rd@db:5432/mydb?connect_timeout=300"
 ```
 
-```/.env
+```
+#/.env
 POSTGRES_PASSWORD="passW0rd"
 ```
 
