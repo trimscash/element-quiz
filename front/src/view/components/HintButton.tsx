@@ -56,7 +56,7 @@ function RouletteButton() {
     }
     return
   }
-  return <Button value="Get More Hint" onClick={() => handleClick()} />
+  return <Button value="Hint" onClick={() => handleClick()} />
 }
 
 export default RouletteButton

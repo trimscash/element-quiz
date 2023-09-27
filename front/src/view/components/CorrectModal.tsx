@@ -21,13 +21,13 @@ import TweetButton from './TweetButton'
 
 const modalStyles = {
   content: {
-    top: '40%',
-    left: '50%',
+    top: '40svh',
+    left: '50svw',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    minWidth: '40%',
+    minWidth: '50svw',
     transition: 'opacity 2000ms ease-in-out',
   },
 }

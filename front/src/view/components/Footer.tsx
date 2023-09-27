@@ -20,9 +20,9 @@ function Footer() {
         <Answer />
         <div id="hintButtons">
           <HintButton />
-          <TweetButton />
         </div>
       </div>
+      <TweetButton />
 
       <div className="cash">
         <a href="https://github.com/trimscash/element-quiz/">Source code/</a>

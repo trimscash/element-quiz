@@ -72,19 +72,24 @@ a {
 }
 
 #hintButtons>button {
-  padding-left: 10%;
-  padding-right: 10%;
+  margin-top: 0.6svh;
+  padding-left: 30%;
+  padding-right: 30%;
+  /* font-size: clamp(1svw, 5svw, 1em); */
 }
 
 #tweetButton {
-  margin: 5px
+  position: absolute;
+  right: 1.5svw;
+  bottom: 1.5svh;
 }
+
 
 .cash {
   color: #503c14;
   text-decoration: none;
   position: absolute;
-  font-size: clamp(0.5em, 5svw, 1em);
+  font-size: clamp(0.5em, 1svh, 1em);
   bottom: 1px;
 }
 
