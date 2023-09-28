@@ -50,5 +50,5 @@ docker compose -f production.yaml up -d
 # todo
 - Use styled-components
 - SSL
-- Implement servaival mode
+- Implement survival mode
 - Design for mobile 
