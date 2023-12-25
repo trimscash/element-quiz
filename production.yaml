@@ -3,7 +3,7 @@ services:
   web:
     image: nginx:latest
     volumes:
-      - ./nginx.conf.template:/etc/nginx/templates
+      - ./nginx.conf.template:/etc/nginx/templates/nginx.conf.template
     environment:
       - PUBLIC_API_URL=$PUBLIC_API_URL
       - PUBLIC_URL=$PUBLIC_URL
