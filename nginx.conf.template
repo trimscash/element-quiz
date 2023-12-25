@@ -4,29 +4,28 @@ events {
 }
 
 http {
-	server {
-   		listen 80 default_server;
-   		server_name _;
-		location / {
-    		return 444;
-   		}
-	}
+    server {
+        listen 80 default_server;
+        server_name _;
+        location / {
+            return 444;
+        }
+    }
 
     server {
         listen 80;
-        server_name "element-quiz.trimscash.mydns.jp";
-        
+        server_name ${PUBLIC_URL};
+
         location / {
             proxy_pass http://front:3000/;
         }
-
     }
     server {
         listen 80;
-        server_name "api.element-quiz.trimscash.mydns.jp";
+        server_name ${PUBLIC_API_URL};
+        
         location / {
             proxy_pass http://api:4000/;
         }
     }
 }
-
