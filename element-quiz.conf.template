@@ -9,8 +9,7 @@ http {
     }
 
     server {
-        listen 443;
-        ssl on;
+        listen 443 ssl;
 
         ssl_certificate      /etc/letsencrypt/live/${PUBLIC_URL}/fullchain.pem;
         ssl_certificate_key  /etc/letsencrypt/live/${PUBLIC_URL}/privkey.pem;
@@ -21,8 +20,7 @@ http {
         }
     }
     server {
-        listen 443;
-        ssl on;
+        listen 443 ssl;
 
         ssl_certificate      /etc/letsencrypt/live/${PUBLIC_URL}/fullchain.pem;
         ssl_certificate_key  /etc/letsencrypt/live/${PUBLIC_URL}/privkey.pem;
