@@ -9,8 +9,33 @@ http {
     }
 
     server {
+        listen 443;
+        ssl on;
+
+        ssl_certificate      /etc/letsencrypt/live/${PUBLIC_URL}/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/${PUBLIC_URL}/privkey.pem;
+
+        server_name ${PUBLIC_FRONT_URL};
+        location / {
+            proxy_pass http://front:3000/;
+        }
+    }
+    server {
+        listen 443;
+        ssl on;
+
+        ssl_certificate      /etc/letsencrypt/live/${PUBLIC_URL}/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/${PUBLIC_URL}/privkey.pem;
+
+        server_name ${PUBLIC_API_URL};
+        location / {
+            proxy_pass http://api:4000/;
+        }
+    }
+
+    server {
         listen 80;
-        server_name ${PUBLIC_URL};
+        server_name ${PUBLIC_FRONT_URL};
 
         location / {
             proxy_pass http://front:3000/;
