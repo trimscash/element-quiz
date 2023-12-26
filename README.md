@@ -40,6 +40,7 @@ DATABASE_URL="postgresql://postgres:passW0rd@db:5432/mydb?connect_timeout=300"
 #/.env
 POSTGRES_PASSWORD="passW0rd"
 PUBLIC_API_URL="your server url"
+PUBLIC_FRONT_URL="your server url"
 PUBLIC_URL="your server url"
 POSTGRES_DB="mydb"
 POSTGRES_USER="postgres"
@@ -53,6 +54,5 @@ docker compose -f production.yaml up -d
 
 # todo
 - Use styled-components
-- SSL
 - Implement survival mode
 - Design for mobile 
