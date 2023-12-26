@@ -3,9 +3,16 @@ http {
     server {
         listen 80 default_server;
         server_name _;
-        location / {
-            return 444;
-        }
+        return 444;
+    }
+    
+    server {
+        listen 443 default_server;
+        ssl_certificate      /etc/letsencrypt/live/${PUBLIC_URL}/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/${PUBLIC_URL}/privkey.pem;
+
+        server_name _;
+        return 444;
     }
 
     server {
@@ -35,16 +42,12 @@ http {
         listen 80;
         server_name ${PUBLIC_FRONT_URL};
 
-        location / {
-            proxy_pass http://front:3000/;
-        }
+        return 301 https://$host$request_uri;
     }
     server {
         listen 80;
         server_name ${PUBLIC_API_URL};
         
-        location / {
-            proxy_pass http://api:4000/;
-        }
+        return 301 https://$host$request_uri;
     }
 }
